@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Resume Selector</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      padding: 40px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    textarea, input[type="file"] {
+      width: 100%;
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Smart Resume Selector</h1>
+  <form method="POST" enctype="multipart/form-data">
+    <label for="job_description">Enter Job Description / Keywords:</label>
+    <textarea name="job_description" rows="4" required></textarea>
+
+    <label for="resumes">Upload Resumes (PDF or TXT):</label>
+    <input type="file" name="resumes" multiple required>
+
+    <button type="submit">Analyze Resumes</button>
+  </form>
+</body>
+</html>

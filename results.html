@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Top Resume Matches</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      padding: 40px;
+      color: #333;
+    }
+    h2 {
+      text-align: center;
+    }
+    h3 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .resume-block {
+      background: white;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    pre {
+      background: #f1f3f5;
+      padding: 12px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    .toggle-btn {
+      cursor: pointer;
+      color: #007bff;
+      text-decoration: underline;
+      margin-top: 10px;
+      display: inline-block;
+    }
+    .full-resume {
+      display: none;
+      white-space: pre-wrap;
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 40px;
+      display: block;
+      font-weight: bold;
+      color: #333;
+    }
+    .pdf-link {
+      display: block;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+  </style>
+  <script>
+    function toggleContent(id) {
+      const block = document.getElementById(id);
+      block.style.display = (block.style.display === "none") ? "block" : "none";
+    }
+  </script>
+</head>
+<body>
+  <h2>Top Resume Matches for:</h2>
+  <h3><em>{{ query }}</em></h3>
+
+  <div class="pdf-link">
+    <a href="{{ pdf_link }}" download>⬇ Download Full PDF Report</a>
+  </div>
+
+  {% for res in results %}
+    <div class="resume-block">
+      <h3>{{ res.filename }} — Score: {{ "%.1f"|format(res.score) }}/10</h3>
+      <strong>Snippet:</strong>
+      <pre>{{ res.snippet }}</pre>
+
+      <span class="toggle-btn" onclick="toggleContent('full{{ loop.index }}')">▶ View Full Resume</span>
+      <div id="full{{ loop.index }}" class="full-resume">
+        <pre>{{ res.full_content }}</pre>
+      </div>
+    </div>
+  {% endfor %}
+
+  <a class="back-link" href="/">← Start New Search</a>
+</body>
+</html>
